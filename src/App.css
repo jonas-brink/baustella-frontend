@@ -1,3 +1,38 @@
 .App {
-  text-align: center;
+	text-align: center;
+	min-height: 100vh;
+	background-color: rgb(32,32,32);
+}
+
+.longPrepend {
+	width: 43px;
+}
+
+.longText {
+	width: 100%;
+	background-color: black !important;
+	border: 1px solid white !important;
+}
+
+.invisiblePrepend {
+	visibility: hidden;
+}
+
+.form-control {
+	color: white;
+}
+
+.darkControl {
+	color: rgb(243, 243, 243) !important;
+	background-color: black !important;
+	border: 1px solid white !important;
+}
+
+.darkButton {
+	background-color: black !important;
+	border: 1px solid white !important;
+}
+
+.whiteIcon {
+	color: white;
 }

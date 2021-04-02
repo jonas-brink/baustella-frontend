@@ -1,0 +1,8 @@
+.headerText {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.darkAppBar {
+    background-color: black !important;
+}
