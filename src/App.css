@@ -1,7 +1,7 @@
 .App {
 	text-align: center;
 	min-height: 100vh;
-	background-color: rgb(32,32,32);
+	background-color: rgb(32, 32, 32);
 }
 
 .longPrepend {
@@ -23,7 +23,7 @@
 }
 
 .darkControl {
-	color: rgb(243, 243, 243) !important;
+	color: white !important;
 	background-color: black !important;
 	border: 1px solid white !important;
 }
@@ -35,4 +35,8 @@
 
 .whiteIcon {
 	color: white;
+}
+
+.darkSelect {
+	padding-right: 0px;
 }

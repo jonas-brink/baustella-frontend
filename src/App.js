@@ -3,8 +3,7 @@ import './App.css';
 import axios from 'axios';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown';
+import Select from 'react-select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhoneAlt, faHome, faMapMarkerAlt, faUser, faEnvelope, faCalendarDay } from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
@@ -23,14 +22,36 @@ class App extends Component {
 			plz: '',
 			ort: '',
 			email: '',
-			datum: ''
+			datum: '',
+			daten: ''
 		};
 
 		this.sendInput = this.sendInput.bind(this);
 	}
 
+	componentDidMount() {
+		const selectOptions = [
+			{ value: '0', label: '03.04.21' },
+			{ value: '1', label: '10.04.21' },
+			{ value: '2', label: '17.04.21' }
+		];
+		this.setState({ daten: selectOptions });
+	}
+
 	sendInput() {
-		axios.post('http://localhost:7000/server.php', JSON.stringify(this.state))
+		var userData = {
+			"datum": this.state.datum,
+			"vorname": this.state.vorname,
+			"nachname": this.state.nachname,
+			"telefonnr": this.state.telefonnr,
+			"strasse": this.state.strasse,
+			"hausnr": this.state.hausnr,
+			"plz": this.state.plz,
+			"ort": this.state.ort,
+			"email": this.state.email
+		}
+
+		axios.post('http://localhost:7000/server.php', JSON.stringify(userData))
 			.then(res => {
 				console.log('Antwort vom Server:');
 				console.log(res.data);
@@ -38,6 +59,33 @@ class App extends Component {
 	}
 
 	render() {
+
+		const customStyles = {
+			option: (base, state) => ({
+				...base,
+				backgroundColor: state.isSelected ? "lightgreen" : "black",
+				color: state.isSelected ? "black" : "white",
+				border: "1px solid white"
+				//borderBottom: '1px dotted pink',
+				//color: state.isSelected ? 'red' : 'blue',
+				//padding: 20,
+			}),
+			control: (base, state) => ({
+				...base,
+				backgroundColor: "black"
+				// none of react-select's styles are passed to <Control />
+				//width: 200,
+			}),
+			singleValue: (base, state) => ({
+				...base,
+				color: "white"
+				//const opacity = state.isDisabled ? 0.5 : 1;
+				//const transition = 'opacity 300ms';
+
+				//return { ...provided, opacity, transition };
+			})
+		}
+
 		return (
 			<div className="App" >
 				<PageHeader />
@@ -47,11 +95,15 @@ class App extends Component {
 							<FontAwesomeIcon icon={faCalendarDay} className="whiteIcon" />
 						</InputGroup.Text>
 					</InputGroup.Prepend>
-					<DropdownButton id="dropdown-basic-button" title="Dropdown button">
-						<Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-						<Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-						<Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-					</DropdownButton>
+					<div style={{ flex: '1 1 auto' }}>
+						<Select
+							styles={customStyles}
+							className="darkSelect"
+							options={this.state.daten}
+							defaultValue={{ value: '3', label: '22.11.21' }}
+							onChange={selected => { this.setState({ datum: selected }) }}
+						/>
+					</div>
 				</InputGroup>
 				<InputGroup className="m-3 w-auto">
 					<InputGroup.Prepend className="longPrepend">
