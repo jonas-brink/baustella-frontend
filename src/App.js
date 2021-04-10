@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import './App.css';
-import axios from 'axios';
+//import axios from 'axios';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Select from 'react-select';
@@ -42,7 +42,7 @@ class App extends Component {
 	}
 
 	sendInput() {
-		var userData = {
+		/*var userData = {
 			"datum": this.state.datum,
 			"vorname": this.state.vorname,
 			"nachname": this.state.nachname,
@@ -52,7 +52,7 @@ class App extends Component {
 			"plz": this.state.plz,
 			"ort": this.state.ort,
 			"email": this.state.email
-		}
+		}*/
 
 		/*axios.post('http://localhost:7000/server.php', JSON.stringify(userData))
 			.then(res => {
