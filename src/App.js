@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhoneAlt, faHome, faMapMarkerAlt, faUser, faEnvelope, faCalendarDay } from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import PageHeader from './PageHeader.js';
+//QRCode: MIT-license
+import QRCode from "react-qr-code";
 
 
 class App extends Component {
@@ -23,7 +25,8 @@ class App extends Component {
 			ort: '',
 			email: '',
 			datum: '',
-			daten: ''
+			daten: '',
+			qrValue: ''
 		};
 
 		this.sendInput = this.sendInput.bind(this);
@@ -51,11 +54,15 @@ class App extends Component {
 			"email": this.state.email
 		}
 
-		axios.post('http://localhost:7000/server.php', JSON.stringify(userData))
+		/*axios.post('http://localhost:7000/server.php', JSON.stringify(userData))
 			.then(res => {
 				console.log('Antwort vom Server:');
 				console.log(res.data);
 			})
+			*/
+		this.setState({
+			qrValue: this.state.vorname + ", " + this.state.nachname + ", " + this.state.telefonnr + ", " + this.state.strasse + " " + this.state.hausnr + ", " + this.state.plz + " " + this.state.ort + ", " + this.state.email
+		});
 	}
 
 	render() {
@@ -197,6 +204,7 @@ class App extends Component {
 					/>
 				</InputGroup>
 				<Button className="darkButton" variant="contained" color="primary" onClick={this.sendInput}>Abschicken</Button>
+				<QRCode value={this.state.qrValue} size={90} />
 			</div >
 		);
 	}
