@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import './App.css';
 //import axios from 'axios';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -10,7 +10,16 @@ import Button from '@material-ui/core/Button';
 import PageHeader from './PageHeader.js';
 //QRCode: MIT-license
 import QRCode from "react-qr-code";
+//Modal: MIT-license
+import Modal from 'react-modal';
+//React-PDF: MIT-license
+import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
+//React-to-PDF: MIT-license
+import ReactToPdf from "react-to-pdf";
+//Import PDFDocument component
+import PDFDocument from './PDFDocument.js';
 
+const ref = React.createRef();
 
 class App extends Component {
 	constructor(props) {
@@ -26,22 +35,30 @@ class App extends Component {
 			email: '',
 			datum: '',
 			daten: '',
-			qrValue: ''
+			qrValue: '',
+			modalIsOpen: false
 		};
 
 		this.sendInput = this.sendInput.bind(this);
+		this.closeModal = this.closeModal.bind(this);
+
 	}
 
 	componentDidMount() {
-		const selectOptions = [
+		//set modal app element
+		Modal.setAppElement('body');
+
+		//Set render options for date select
+		/*const selectOptions = [
 			{ value: '0', label: '03.04.21' },
 			{ value: '1', label: '10.04.21' },
 			{ value: '2', label: '17.04.21' }
 		];
-		this.setState({ daten: selectOptions });
+		this.setState({ daten: selectOptions });*/
 	}
 
 	sendInput() {
+		//Send data to php-Server
 		/*var userData = {
 			"datum": this.state.datum,
 			"vorname": this.state.vorname,
@@ -52,16 +69,23 @@ class App extends Component {
 			"plz": this.state.plz,
 			"ort": this.state.ort,
 			"email": this.state.email
-		}*/
+		}
 
-		/*axios.post('http://localhost:7000/server.php', JSON.stringify(userData))
+		axios.post('http://localhost:7000/server.php', JSON.stringify(userData))
 			.then(res => {
 				console.log('Antwort vom Server:');
 				console.log(res.data);
-			})
-			*/
+			})*/
+
 		this.setState({
-			qrValue: this.state.vorname + ", " + this.state.nachname + ", " + this.state.telefonnr + ", " + this.state.strasse + " " + this.state.hausnr + ", " + this.state.plz + " " + this.state.ort + ", " + this.state.email
+			qrValue: this.state.vorname + ", " + this.state.nachname + ", " + this.state.telefonnr + ", " + this.state.strasse + " " + this.state.hausnr + ", " + this.state.plz + " " + this.state.ort + ", " + this.state.email,
+			modalIsOpen: true
+		});
+	}
+
+	closeModal() {
+		this.setState({
+			modalIsOpen: false
 		});
 	}
 
@@ -94,24 +118,26 @@ class App extends Component {
 		}
 
 		return (
-			<div className="App" >
+			<div className="App">
 				<PageHeader />
-				<InputGroup className="m-3 w-auto">
-					<InputGroup.Prepend className="longPrepend">
-						<InputGroup.Text className="longText">
-							<FontAwesomeIcon icon={faCalendarDay} className="whiteIcon" />
-						</InputGroup.Text>
-					</InputGroup.Prepend>
-					<div style={{ flex: '1 1 auto' }}>
-						<Select
-							styles={customStyles}
-							className="darkSelect"
-							options={this.state.daten}
-							defaultValue={{ value: '3', label: '22.11.21' }}
-							onChange={selected => { this.setState({ datum: selected }) }}
-						/>
-					</div>
-				</InputGroup>
+				{
+					/*<InputGroup className="m-3 w-auto">
+						<InputGroup.Prepend className="longPrepend">
+							<InputGroup.Text className="longText">
+								<FontAwesomeIcon icon={faCalendarDay} className="whiteIcon" />
+							</InputGroup.Text>
+						</InputGroup.Prepend>
+						<div style={{ flex: '1 1 auto' }}>
+							<Select
+								styles={customStyles}
+								className="darkSelect"
+								options={this.state.daten}
+								defaultValue={{ value: '3', label: '22.11.21' }}
+								onChange={selected => { this.setState({ datum: selected }) }}
+							/>
+						</div>
+					</InputGroup>*/
+				}
 				<InputGroup className="m-3 w-auto">
 					<InputGroup.Prepend className="longPrepend">
 						<InputGroup.Text className="longText">
@@ -204,7 +230,49 @@ class App extends Component {
 					/>
 				</InputGroup>
 				<Button className="darkButton" variant="contained" color="primary" onClick={this.sendInput}>Abschicken</Button>
-				<QRCode value={this.state.qrValue} size={90} />
+				<Modal isOpen={this.state.modalIsOpen} >
+					<div style={{ textAlign: 'center' }}>
+						<div ref={ref}>
+							<h3 >Zugangscode:</h3>
+							<QRCode
+								value={this.state.qrValue}
+								size={160}
+							/>
+						</div>
+
+						<div>
+							Bitte am Eingang einen Screenshot dieser Seite oder das heruntergeladene PDF-Dokument vorzeigen.
+						</div>
+						{
+							// QR-Code
+							/*<QRCode
+								value={this.state.qrValue}
+								size={90}
+							/>*/
+						}
+						{
+							// Show in PDF-Viewer
+							/*<PDFViewer>
+								<PDFDocument />
+							</PDFViewer>*/
+						}
+						{
+							// Download-Link zum PDF 
+							/*<PDFDownloadLink document={<PDFDocument />} fileName="somename.pdf">
+								{({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
+							</PDFDownloadLink>*/
+						}
+						{
+							//
+							<ReactToPdf targetRef={ref} filename="div-blue.pdf" scale={3} x={28} y={20}>
+								{({ toPdf }) => (
+									<Button className="darkButton" variant="contained" color="primary" onClick={toPdf}>Download PDF</Button>
+								)}
+							</ReactToPdf>
+						}
+						<Button className="darkButton" variant="contained" color="primary" onClick={this.closeModal}>Schließen</Button>
+					</div>
+				</Modal>
 			</div >
 		);
 	}
