@@ -3,9 +3,9 @@ import './App.css';
 //import axios from 'axios';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
-import Select from 'react-select';
+//import Select from 'react-select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhoneAlt, faHome, faMapMarkerAlt, faUser, faEnvelope, faCalendarDay } from '@fortawesome/free-solid-svg-icons';
+import { faPhoneAlt, faHome, faMapMarkerAlt, faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import PageHeader from './PageHeader.js';
 //QRCode: MIT-license
@@ -13,11 +13,11 @@ import QRCode from "react-qr-code";
 //Modal: MIT-license
 import Modal from 'react-modal';
 //React-PDF: MIT-license
-import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
+//import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
 //React-to-PDF: MIT-license
 import ReactToPdf from "react-to-pdf";
 //Import PDFDocument component
-import PDFDocument from './PDFDocument.js';
+//import PDFDocument from './PDFDocument.js';
 
 const ref = React.createRef();
 
@@ -90,8 +90,8 @@ class App extends Component {
 	}
 
 	render() {
-
-		const customStyles = {
+		//Style date select
+		/*const customStyles = {
 			option: (base, state) => ({
 				...base,
 				backgroundColor: state.isSelected ? "lightgreen" : "black",
@@ -115,7 +115,7 @@ class App extends Component {
 
 				//return { ...provided, opacity, transition };
 			})
-		}
+		}*/
 
 		return (
 			<div className="App">

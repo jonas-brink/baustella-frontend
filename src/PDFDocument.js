@@ -1,6 +1,6 @@
 import { Component } from 'react';
 //React-PDF: MIT-license
-import { Document, Page, Text, View, StyleSheet, Svg } from '@react-pdf/renderer';
+import { Document, Page, Text, View, Svg } from '@react-pdf/renderer';
 //QRCode: MIT-license
 import QRCode from "react-qr-code";
 
