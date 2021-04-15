@@ -3,9 +3,9 @@ import './App.css';
 //import axios from 'axios';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
-//import Select from 'react-select';
+import Select from 'react-select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhoneAlt, faHome, faMapMarkerAlt, faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faPhoneAlt, faHome, faMapMarkerAlt, faUser, faEnvelope, faCalendarDay } from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import PageHeader from './PageHeader.js';
 //QRCode: MIT-license
@@ -25,6 +25,7 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			datum: '',
 			vorname: '',
 			nachname: '',
 			telefonnr: '',
@@ -33,8 +34,9 @@ class App extends Component {
 			plz: '',
 			ort: '',
 			email: '',
-			datum: '',
-			daten: '',
+			//array of options for Select-input
+			daten: [],
+			//value of qr code
 			qrValue: '',
 			modalIsOpen: false
 		};
@@ -48,37 +50,28 @@ class App extends Component {
 		//set modal app element
 		Modal.setAppElement('body');
 
+		var today = new Date(Date.now());
+		var day = today.getDate();
+		var month = (today.getMonth() + 1);
+		var year = today.getFullYear();
+
 		//Set render options for date select
-		/*const selectOptions = [
-			{ value: '0', label: '03.04.21' },
-			{ value: '1', label: '10.04.21' },
-			{ value: '2', label: '17.04.21' }
+		const selectOptions = [
+			{ value: 0, label: day + '.' + month + '.' + year },
+			{ value: 1, label: (day + 1) + '.' + month + '.' + year },
+			{ value: 2, label: (day + 2) + '.' + month + '.' + year }
 		];
-		this.setState({ daten: selectOptions });*/
+		this.setState({ daten: selectOptions });
 	}
 
 	sendInput() {
-		//Send data to php-Server
-		/*var userData = {
-			"datum": this.state.datum,
-			"vorname": this.state.vorname,
-			"nachname": this.state.nachname,
-			"telefonnr": this.state.telefonnr,
-			"strasse": this.state.strasse,
-			"hausnr": this.state.hausnr,
-			"plz": this.state.plz,
-			"ort": this.state.ort,
-			"email": this.state.email
-		}
+		//TODO: check for splitter string !
 
-		axios.post('http://localhost:7000/server.php', JSON.stringify(userData))
-			.then(res => {
-				console.log('Antwort vom Server:');
-				console.log(res.data);
-			})*/
-
+		console.log(this.state.datum);
+		var splitElem = "}";
 		this.setState({
-			qrValue: this.state.vorname + ", " + this.state.nachname + ", " + this.state.telefonnr + ", " + this.state.strasse + " " + this.state.hausnr + ", " + this.state.plz + " " + this.state.ort + ", " + this.state.email,
+			qrValue: this.state.datum + splitElem + this.state.vorname + splitElem + this.state.nachname + splitElem + this.state.telefonnr + splitElem
+				+ this.state.strasse + splitElem + this.state.hausnr + splitElem + this.state.plz + splitElem + this.state.ort + splitElem + this.state.email,
 			modalIsOpen: true
 		});
 	}
@@ -91,7 +84,7 @@ class App extends Component {
 
 	render() {
 		//Style date select
-		/*const customStyles = {
+		const customStyles = {
 			option: (base, state) => ({
 				...base,
 				backgroundColor: state.isSelected ? "lightgreen" : "black",
@@ -115,13 +108,13 @@ class App extends Component {
 
 				//return { ...provided, opacity, transition };
 			})
-		}*/
+		}
 
 		return (
 			<div className="App">
 				<PageHeader />
 				{
-					/*<InputGroup className="m-3 w-auto">
+					<InputGroup className="m-3 w-auto">
 						<InputGroup.Prepend className="longPrepend">
 							<InputGroup.Text className="longText">
 								<FontAwesomeIcon icon={faCalendarDay} className="whiteIcon" />
@@ -132,11 +125,11 @@ class App extends Component {
 								styles={customStyles}
 								className="darkSelect"
 								options={this.state.daten}
-								defaultValue={{ value: '3', label: '22.11.21' }}
-								onChange={selected => { this.setState({ datum: selected }) }}
+								placeholder="Datum der Feier"
+								onChange={selected => { this.setState({ datum: selected.label }) }}
 							/>
 						</div>
-					</InputGroup>*/
+					</InputGroup>
 				}
 				<InputGroup className="m-3 w-auto">
 					<InputGroup.Prepend className="longPrepend">
@@ -222,8 +215,8 @@ class App extends Component {
 						</InputGroup.Text>
 					</InputGroup.Prepend>
 					<FormControl
-						placeholder="E-Mail"
-						aria-label="E-Mail"
+						placeholder="E-Mail (optional)"
+						aria-label="E-Mail (optional)"
 						aria-describedby="basic-addon1"
 						onChange={event => { this.setState({ email: event.target.value }); }}
 						className="darkControl"
@@ -232,15 +225,17 @@ class App extends Component {
 				<Button className="darkButton" variant="contained" color="primary" onClick={this.sendInput}>Abschicken</Button>
 				<Modal isOpen={this.state.modalIsOpen} >
 					<div style={{ textAlign: 'center' }}>
-						<div ref={ref}>
+						<div className="pdfDiv" ref={ref}>
 							<h3 >Zugangscode:</h3>
-							<QRCode
-								value={this.state.qrValue}
-								size={160}
-							/>
+							<div>
+								<QRCode
+									value={this.state.qrValue}
+									size={180}
+								/>
+							</div>
 						</div>
 
-						<div>
+						<div className="qrInfoDiv">
 							Bitte am Eingang einen Screenshot dieser Seite oder das heruntergeladene PDF-Dokument vorzeigen.
 						</div>
 						{
