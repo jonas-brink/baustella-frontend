@@ -3,5 +3,5 @@
 ## Nutzen
 Diese Eingabemaske dient zur Kontakterfassung und kann mit verschiedenen Backends verwendet werden.
 
-## Übermittlungscodierung
+## Übermittlungsprotokoll
 TODO: Beschreibung der Codierung
