@@ -70,7 +70,7 @@ class App extends Component {
 		console.log(this.state.datum);
 		var splitElem = "}";
 		this.setState({
-			qrValue: this.state.datum + splitElem + this.state.vorname + splitElem + this.state.nachname + splitElem + this.state.telefonnr + splitElem
+			qrValue: "BAU" + this.state.datum + splitElem + this.state.vorname + splitElem + this.state.nachname + splitElem + this.state.telefonnr + splitElem
 				+ this.state.strasse + splitElem + this.state.hausnr + splitElem + this.state.plz + splitElem + this.state.ort + splitElem + this.state.email,
 			modalIsOpen: true
 		});
