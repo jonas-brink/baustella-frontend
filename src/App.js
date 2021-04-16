@@ -64,16 +64,70 @@ class App extends Component {
 		this.setState({ daten: selectOptions });
 	}
 
-	sendInput() {
-		//TODO: check for splitter string !
+	validateInput() {
+		var letters = /^[a-zA-Z]+$/;
+		var numbers = /^[0-9]+$/;
+		var hausnrString = /^[0-9]+[a-zA-Z]?$/
+		//var emailString = /^[a-zA-Z@._]+$/;
 
-		console.log(this.state.datum);
-		var splitElem = "}";
-		this.setState({
-			qrValue: "BAU" + this.state.datum + splitElem + this.state.vorname + splitElem + this.state.nachname + splitElem + this.state.telefonnr + splitElem
-				+ this.state.strasse + splitElem + this.state.hausnr + splitElem + this.state.plz + splitElem + this.state.ort + splitElem + this.state.email,
-			modalIsOpen: true
-		});
+		var correctInput = true;
+
+		if (!this.state.vorname.match(letters)) {
+			console.log('vorname wrong !x');
+			correctInput = false;
+		}
+
+		if (!this.state.nachname.match(letters)) {
+			console.log('nachname wrong !x');
+			correctInput = false;
+		}
+
+		if (!this.state.telefonnr.match(numbers)) {
+			console.log('telefonnr wrong !x');
+			correctInput = false;
+		}
+
+		if (!this.state.strasse.match(letters)) {
+			console.log('strasse wrong !x');
+			correctInput = false;
+		}
+
+		if (!this.state.hausnr.match(hausnrString)) {
+			console.log('hausnr wrong !x');
+			correctInput = false;
+		}
+
+		if (!this.state.plz.match(numbers)) {
+			console.log('plz wrong !x');
+			correctInput = false;
+		}
+
+		if (!this.state.ort.match(letters)) {
+			console.log('ort wrong !x');
+			correctInput = false;
+		}
+
+		/*if (!this.state.email.match(emailString)) {
+			console.log('email wrong !x');
+			correctInput = false;
+		}*/
+		console.log('.....................')
+		return correctInput;
+	}
+
+	sendInput() {
+		var validInput = this.validateInput();
+		if (validInput) {
+			var splitElem = "}";
+			this.setState({
+				qrValue: "BAU" + this.state.datum + splitElem + this.state.vorname + splitElem + this.state.nachname + splitElem + this.state.telefonnr + splitElem
+					+ this.state.strasse + splitElem + this.state.hausnr + splitElem + this.state.plz + splitElem + this.state.ort + splitElem + this.state.email,
+				modalIsOpen: true
+			});
+		} else {
+			alert('Bitte korrekte Angaben machen !');
+		}
+
 	}
 
 	closeModal() {
