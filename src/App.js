@@ -276,7 +276,7 @@ class App extends Component {
 						className="darkControl"
 					/>
 				</InputGroup>
-				<Button className="darkButton" variant="contained" color="primary" onClick={this.sendInput}>Abschicken</Button>
+				<Button className="darkButton" variant="contained" color="primary" onClick={this.sendInput}>Bestätigen</Button>
 				<Modal isOpen={this.state.modalIsOpen} >
 					<div style={{ textAlign: 'center' }}>
 						<div className="pdfDiv" ref={ref}>
