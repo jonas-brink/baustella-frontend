@@ -3,9 +3,9 @@ import './App.css';
 //import axios from 'axios';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
-import Select from 'react-select';
+//import Select from 'react-select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhoneAlt, faHome, faMapMarkerAlt, faUser, faEnvelope, faCalendarDay } from '@fortawesome/free-solid-svg-icons';
+import { faPhoneAlt, faHome, faMapMarkerAlt, faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import PageHeader from './PageHeader.js';
 //QRCode: MIT-license
@@ -25,7 +25,7 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			datum: '',
+			//datum: '',
 			vorname: '',
 			nachname: '',
 			telefonnr: '',
@@ -35,7 +35,7 @@ class App extends Component {
 			ort: '',
 			email: '',
 			//array of options for Select-input
-			daten: [],
+			//daten: [],
 			//value of qr code
 			qrValue: '',
 			modalIsOpen: false
@@ -50,7 +50,7 @@ class App extends Component {
 		//set modal app element
 		Modal.setAppElement('body');
 
-		var today = new Date(Date.now());
+		/*var today = new Date(Date.now());
 		var day = today.getDate();
 		var month = (today.getMonth() + 1);
 		var year = today.getFullYear();
@@ -61,7 +61,7 @@ class App extends Component {
 			{ value: 1, label: (day + 1) + '.' + month + '.' + year },
 			{ value: 2, label: (day + 2) + '.' + month + '.' + year }
 		];
-		this.setState({ daten: selectOptions });
+		this.setState({ daten: selectOptions });*/
 	}
 
 	validateInput() {
@@ -120,7 +120,7 @@ class App extends Component {
 		if (validInput) {
 			var splitElem = "}";
 			this.setState({
-				qrValue: "BAU" + splitElem + this.state.datum + splitElem + this.state.vorname + splitElem + this.state.nachname + splitElem + this.state.telefonnr + splitElem
+				qrValue: "BAU" + splitElem + this.state.vorname + splitElem + this.state.nachname + splitElem + this.state.telefonnr + splitElem
 					+ this.state.strasse + splitElem + this.state.hausnr + splitElem + this.state.plz + splitElem + this.state.ort + splitElem + this.state.email,
 				modalIsOpen: true
 			});
@@ -138,7 +138,7 @@ class App extends Component {
 
 	render() {
 		//Style date select
-		const customStyles = {
+		/*const customStyles = {
 			option: (base, state) => ({
 				...base,
 				backgroundColor: state.isSelected ? "lightgreen" : "black",
@@ -162,13 +162,13 @@ class App extends Component {
 
 				//return { ...provided, opacity, transition };
 			})
-		}
+		}*/
 
 		return (
 			<div className="App">
 				<PageHeader />
 				{
-					<InputGroup className="m-3 w-auto">
+					/*<InputGroup className="m-3 w-auto">
 						<InputGroup.Prepend className="longPrepend">
 							<InputGroup.Text className="longText">
 								<FontAwesomeIcon icon={faCalendarDay} className="whiteIcon" />
@@ -183,7 +183,7 @@ class App extends Component {
 								onChange={selected => { this.setState({ datum: selected.label }) }}
 							/>
 						</div>
-					</InputGroup>
+					</InputGroup>*/
 				}
 				<InputGroup className="m-3 w-auto">
 					<InputGroup.Prepend className="longPrepend">
