@@ -116,7 +116,8 @@ class App extends Component {
 	}
 
 	sendInput() {
-		var validInput = this.validateInput();
+		//var validInput = this.validateInput();
+		var validInput = true;
 		if (validInput) {
 			var splitElem = "}";
 			this.setState({
