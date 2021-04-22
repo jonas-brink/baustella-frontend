@@ -4,7 +4,8 @@ body {
 
 .App {
 	text-align: center;
-	min-height: 100vh;
+	/*min-height: 100vh;*/
+	max-height: 500px;
 	background-color: rgb(32, 32, 32);
 	max-width: 800px;
 	margin-left: auto;
