@@ -285,7 +285,7 @@ class App extends Component {
 							<div>
 								<QRCode
 									value={this.state.qrValue}
-									size={180}
+									size={240}
 								/>
 							</div>
 						</div>

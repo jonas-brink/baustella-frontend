@@ -52,11 +52,16 @@ body {
 .pdfDiv {
 	margin-left: auto;
 	margin-right: auto;
-	width: 200px;
+	width: 240px;
 	text-align: center;
 }
 
 .qrInfoDiv {
 	font-size: 13px;
 	margin-top: 20px;
+}
+
+.ReactModal__Content--after-open {
+	inset: 25px !important;
+	padding: 10px !important;
 }
