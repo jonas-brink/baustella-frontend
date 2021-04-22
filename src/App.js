@@ -314,7 +314,7 @@ class App extends Component {
 						}
 						{
 							//
-							<ReactToPdf targetRef={ref} filename="div-blue.pdf" scale={3} x={28} y={20}>
+							<ReactToPdf targetRef={ref} filename="div-blue.pdf" scale={2.8} x={16} y={15}>
 								{({ toPdf }) => (
 									<Button className="darkButton" variant="contained" color="primary" onClick={toPdf}>Download PDF</Button>
 								)}
