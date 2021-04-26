@@ -5,7 +5,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 //import Select from 'react-select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhoneAlt, faHome, faMapMarkerAlt, faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faPhoneAlt, faHome, faMapMarkerAlt, faUser, faBirthdayCake } from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import PageHeader from './PageHeader.js';
 //QRCode: MIT-license
@@ -28,12 +28,12 @@ class App extends Component {
 			//datum: '',
 			vorname: '',
 			nachname: '',
+			gebdatum: '',
 			telefonnr: '',
 			strasse: '',
 			hausnr: '',
 			plz: '',
 			ort: '',
-			email: '',
 			//array of options for Select-input
 			//daten: [],
 			//value of qr code
@@ -49,19 +49,6 @@ class App extends Component {
 	componentDidMount() {
 		//set modal app element
 		Modal.setAppElement('body');
-
-		/*var today = new Date(Date.now());
-		var day = today.getDate();
-		var month = (today.getMonth() + 1);
-		var year = today.getFullYear();
-
-		//Set render options for date select
-		const selectOptions = [
-			{ value: 0, label: day + '.' + month + '.' + year },
-			{ value: 1, label: (day + 1) + '.' + month + '.' + year },
-			{ value: 2, label: (day + 2) + '.' + month + '.' + year }
-		];
-		this.setState({ daten: selectOptions });*/
 	}
 
 	validateInput() {
@@ -81,6 +68,8 @@ class App extends Component {
 			console.log('nachname wrong !x');
 			correctInput = false;
 		}
+
+		//TODO: validate birthday-date
 
 		if (!this.state.telefonnr.match(numbers)) {
 			console.log('telefonnr wrong !x');
@@ -107,11 +96,7 @@ class App extends Component {
 			correctInput = false;
 		}
 
-		/*if (!this.state.email.match(emailString)) {
-			console.log('email wrong !x');
-			correctInput = false;
-		}*/
-		console.log('.....................')
+		console.log('......................')
 		return correctInput;
 	}
 
@@ -121,8 +106,8 @@ class App extends Component {
 		if (validInput) {
 			var splitElem = "}";
 			this.setState({
-				qrValue: "BAU" + splitElem + this.state.vorname + splitElem + this.state.nachname + splitElem + this.state.telefonnr + splitElem
-					+ this.state.strasse + splitElem + this.state.hausnr + splitElem + this.state.plz + splitElem + this.state.ort + splitElem + this.state.email,
+				qrValue: "BAU" + splitElem + this.state.vorname + splitElem + this.state.nachname + splitElem + this.state.gebdatum + splitElem + this.state.telefonnr + splitElem
+					+ this.state.strasse + splitElem + this.state.hausnr + splitElem + this.state.plz + splitElem + this.state.ort,
 				modalIsOpen: true
 			});
 		} else {
@@ -138,54 +123,9 @@ class App extends Component {
 	}
 
 	render() {
-		//Style date select
-		/*const customStyles = {
-			option: (base, state) => ({
-				...base,
-				backgroundColor: state.isSelected ? "lightgreen" : "black",
-				color: state.isSelected ? "black" : "white",
-				border: "1px solid white"
-				//borderBottom: '1px dotted pink',
-				//color: state.isSelected ? 'red' : 'blue',
-				//padding: 20,
-			}),
-			control: (base, state) => ({
-				...base,
-				backgroundColor: "black"
-				// none of react-select's styles are passed to <Control />
-				//width: 200,
-			}),
-			singleValue: (base, state) => ({
-				...base,
-				color: "white"
-				//const opacity = state.isDisabled ? 0.5 : 1;
-				//const transition = 'opacity 300ms';
-
-				//return { ...provided, opacity, transition };
-			})
-		}*/
-
 		return (
 			<div className="App">
 				<PageHeader />
-				{
-					/*<InputGroup className="m-3 w-auto">
-						<InputGroup.Prepend className="longPrepend">
-							<InputGroup.Text className="longText">
-								<FontAwesomeIcon icon={faCalendarDay} className="whiteIcon" />
-							</InputGroup.Text>
-						</InputGroup.Prepend>
-						<div style={{ flex: '1 1 auto' }}>
-							<Select
-								styles={customStyles}
-								className="darkSelect"
-								options={this.state.daten}
-								placeholder="Datum der Feier"
-								onChange={selected => { this.setState({ datum: selected.label }) }}
-							/>
-						</div>
-					</InputGroup>*/
-				}
 				<InputGroup className="m-3 w-auto">
 					<InputGroup.Prepend className="longPrepend">
 						<InputGroup.Text className="longText">
@@ -204,6 +144,20 @@ class App extends Component {
 						aria-label="Nachname"
 						aria-describedby="basic-addon1"
 						onChange={event => { this.setState({ nachname: event.target.value }); }}
+						className="darkControl"
+					/>
+				</InputGroup>
+				<InputGroup className="m-3 w-auto">
+					<InputGroup.Prepend className="longPrepend">
+						<InputGroup.Text className="longText">
+							<FontAwesomeIcon icon={faBirthdayCake} className="whiteIcon" />
+						</InputGroup.Text>
+					</InputGroup.Prepend>
+					<FormControl
+						placeholder="Geburtsdatum (TT.MM.JJJJ)"
+						aria-label="Geburtsdatum (TT.MM.JJJJ)"
+						aria-describedby="basic-addon1"
+						onChange={event => { this.setState({ gebdatum: event.target.value }); }}
 						className="darkControl"
 					/>
 				</InputGroup>
@@ -263,20 +217,6 @@ class App extends Component {
 						className="darkControl"
 					/>
 				</InputGroup>
-				<InputGroup className="m-3 w-auto">
-					<InputGroup.Prepend className="longPrepend">
-						<InputGroup.Text className="longText">
-							<FontAwesomeIcon icon={faEnvelope} className="whiteIcon" />
-						</InputGroup.Text>
-					</InputGroup.Prepend>
-					<FormControl
-						placeholder="E-Mail (optional)"
-						aria-label="E-Mail (optional)"
-						aria-describedby="basic-addon1"
-						onChange={event => { this.setState({ email: event.target.value }); }}
-						className="darkControl"
-					/>
-				</InputGroup>
 				<Button className="darkButton" variant="contained" color="primary" onClick={this.sendInput}>Bestätigen</Button>
 				<Modal isOpen={this.state.modalIsOpen} >
 					<div style={{ textAlign: 'center' }}>
@@ -294,26 +234,6 @@ class App extends Component {
 							Bitte am Eingang einen Screenshot dieser Seite oder das heruntergeladene PDF-Dokument vorzeigen.
 						</div>
 						{
-							// QR-Code
-							/*<QRCode
-								value={this.state.qrValue}
-								size={90}
-							/>*/
-						}
-						{
-							// Show in PDF-Viewer
-							/*<PDFViewer>
-								<PDFDocument />
-							</PDFViewer>*/
-						}
-						{
-							// Download-Link zum PDF 
-							/*<PDFDownloadLink document={<PDFDocument />} fileName="somename.pdf">
-								{({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
-							</PDFDownloadLink>*/
-						}
-						{
-							//
 							<ReactToPdf targetRef={ref} filename="div-blue.pdf" scale={2.8} x={16} y={15}>
 								{({ toPdf }) => (
 									<Button className="darkButton" variant="contained" color="primary" onClick={toPdf}>PDF anzeigen</Button>
