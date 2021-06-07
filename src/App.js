@@ -55,7 +55,7 @@ class App extends Component {
 	validateInput() {
 		var letters = /^[a-zA-Z- ßäöüÄÖÜ]+$/;
 		var numbers = /^[0-9]+$/;
-		var telNumber = /^[0-9+]+$/;
+		//var telNumber = /^[0-9+]+$/;
 		var hausnrString = /^[0-9]+[a-zA-Z]?$/
 		//var emailString = /^[a-zA-Z@._]+$/;
 
