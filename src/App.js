@@ -5,7 +5,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 //import Select from 'react-select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhoneAlt, faHome, faMapMarkerAlt, faUser, faBirthdayCake } from '@fortawesome/free-solid-svg-icons';
+import { faPhoneAlt, faUser, faBirthdayCake, faRoad, faCity } from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import PageHeader from './PageHeader.js';
 //QRCode: MIT-license
@@ -51,9 +51,11 @@ class App extends Component {
 		Modal.setAppElement('body');
 	}
 
+	// TODO: validate input correctly
 	validateInput() {
-		var letters = /^[a-zA-Z]+$/;
+		var letters = /^[a-zA-Z- ßäöüÄÖÜ]+$/;
 		var numbers = /^[0-9]+$/;
+		var telNumber = /^[0-9+]+$/;
 		var hausnrString = /^[0-9]+[a-zA-Z]?$/
 		//var emailString = /^[a-zA-Z@._]+$/;
 
@@ -96,7 +98,6 @@ class App extends Component {
 			correctInput = false;
 		}
 
-		console.log('......................')
 		return correctInput;
 	}
 
@@ -105,15 +106,15 @@ class App extends Component {
 		var validInput = true;
 		if (validInput) {
 			var splitElem = "}";
+			var qrVal = "BAU" + splitElem + this.state.vorname + splitElem + this.state.nachname + splitElem + this.state.gebdatum + splitElem + this.state.telefonnr + splitElem
+				+ this.state.strasse + splitElem + this.state.hausnr + splitElem + this.state.plz + splitElem + this.state.ort;
 			this.setState({
-				qrValue: "BAU" + splitElem + this.state.vorname + splitElem + this.state.nachname + splitElem + this.state.gebdatum + splitElem + this.state.telefonnr + splitElem
-					+ this.state.strasse + splitElem + this.state.hausnr + splitElem + this.state.plz + splitElem + this.state.ort,
+				qrValue: encodeURI(qrVal),
 				modalIsOpen: true
 			});
 		} else {
 			alert('Bitte korrekte Angaben machen !');
 		}
-
 	}
 
 	closeModal() {
@@ -175,10 +176,10 @@ class App extends Component {
 						className="darkControl"
 					/>
 				</InputGroup>
-				<InputGroup className="ml-3 mr-3 w-auto">
+				<InputGroup className="m-3 w-auto">
 					<InputGroup.Prepend className="longPrepend">
 						<InputGroup.Text className="longText">
-							<FontAwesomeIcon icon={faHome} className="whiteIcon" />
+							<FontAwesomeIcon icon={faRoad} className="whiteIcon" />
 						</InputGroup.Text>
 					</InputGroup.Prepend>
 					<FormControl
@@ -189,17 +190,17 @@ class App extends Component {
 						className="darkControl"
 					/>
 					<FormControl
-						placeholder="Nr."
-						aria-label="Nr."
+						placeholder="Haus-Nr."
+						aria-label="Haus-Nr."
 						aria-describedby="basic-addon1"
 						onChange={event => { this.setState({ hausnr: event.target.value }); }}
 						className="darkControl"
 					/>
 				</InputGroup>
-				<InputGroup className="ml-3 mr-3 w-auto">
-					<InputGroup.Prepend className="longPrepend invisiblePrepend">
+				<InputGroup className="m-3 w-auto">
+					<InputGroup.Prepend className="longPrepend">
 						<InputGroup.Text className="longText">
-							<FontAwesomeIcon icon={faMapMarkerAlt} className="whiteIcon" />
+							<FontAwesomeIcon icon={faCity} className="whiteIcon" />
 						</InputGroup.Text>
 					</InputGroup.Prepend>
 					<FormControl
