@@ -51,13 +51,11 @@ class App extends Component {
 		Modal.setAppElement('body');
 	}
 
-	// TODO: validate input correctly
 	validateInput() {
 		var letters = /^[a-zA-Z- ßäöüÄÖÜ]+$/;
-		var numbers = /^[0-9]+$/;
-		//var telNumber = /^[0-9+]+$/;
-		var hausnrString = /^[0-9]+[a-zA-Z]?$/
-		//var emailString = /^[a-zA-Z@._]+$/;
+		var numbers = /^[0-9+ /]+$/;
+		var dates = /^[0-9]+.[0-9]+.[0-9]+$/;
+		var hausnrString = /^[0-9 ]+[a-zA-Z ]*$/
 
 		var correctInput = true;
 
@@ -71,7 +69,10 @@ class App extends Component {
 			correctInput = false;
 		}
 
-		//TODO: validate birthday-date
+		if (!this.state.gebdatum.match(dates)) {
+			console.log('gebdatum wrong !x');
+			correctInput = false;
+		}
 
 		if (!this.state.telefonnr.match(numbers)) {
 			console.log('telefonnr wrong !x');
@@ -102,8 +103,8 @@ class App extends Component {
 	}
 
 	sendInput() {
-		//var validInput = this.validateInput();
-		var validInput = true;
+		var validInput = this.validateInput();
+		//var validInput = true;
 		if (validInput) {
 			var splitElem = "}";
 			var qrVal = "BAU" + splitElem + this.state.vorname + splitElem + this.state.nachname + splitElem + this.state.gebdatum + splitElem + this.state.telefonnr + splitElem
@@ -235,7 +236,7 @@ class App extends Component {
 							Bitte am Eingang einen Screenshot dieser Seite oder das heruntergeladene PDF-Dokument vorzeigen.
 						</div>
 						{
-							<ReactToPdf targetRef={ref} filename="div-blue.pdf" scale={2.8} x={16} y={15}>
+							<ReactToPdf targetRef={ref} filename="Baustella_QR.pdf" scale={2.8} x={16} y={15}>
 								{({ toPdf }) => (
 									<Button className="darkButton" variant="contained" color="primary" onClick={toPdf}>PDF anzeigen</Button>
 								)}
