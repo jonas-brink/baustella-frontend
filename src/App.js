@@ -52,7 +52,7 @@ class App extends Component {
 	}
 
 	validateInput() {
-		var letters = /^[a-zA-Z- ßäöüÄÖÜ]+$/;
+		var letters = /^[a-zA-Z- ßäöüÄÖÜ.]+$/;
 		var numbers = /^[0-9+ /]+$/;
 		var dates = /^[0-9]+.[0-9]+.[0-9]+$/;
 		var hausnrString = /^[0-9 ]+[a-zA-Z ]*$/
