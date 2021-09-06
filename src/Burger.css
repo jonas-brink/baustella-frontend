@@ -45,7 +45,7 @@
 /* General sidebar styles */
 
 .bm-menu {
-    background: #373a47;
+    background: #202020;
     padding: 2.5em 1.5em 0;
     font-size: 1.15em;
 }
@@ -75,7 +75,7 @@
 .bm-overlay {
     left: 0px;
     top: 0px;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.7) none repeat scroll 0% 0% !important;
 }
 
 .menu-item {
