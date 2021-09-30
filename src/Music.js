@@ -24,6 +24,7 @@ class Music extends Component {
                     this.setState({
                         sender: response.data.ip
                     }, () => {
+                        alert('Kurz vor record');
                         var record = {
                             "interpret": this.state.interpret,
                             "titel": this.state.titel,
