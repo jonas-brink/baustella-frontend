@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 //import axios from 'axios';
 import PageHeader from './PageHeader.js';
+import Music from './Music';
 import QRGenerator from './QRGenerator';
 import {
 	BrowserRouter as Router,
@@ -19,7 +20,7 @@ class App extends Component {
 					<PageHeader />
 					<Switch>
 						<Route path="/music">
-							<div>MUSIC</div>
+							<Music />
 						</Route>
 						<Route path="/">
 							<QRGenerator />
