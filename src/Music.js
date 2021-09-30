@@ -24,12 +24,12 @@ class Music extends Component {
                     this.setState({
                         sender: response.data.ip
                     }, () => {
-                        alert('Kurz vor record');
                         var record = {
                             "interpret": this.state.interpret,
                             "titel": this.state.titel,
                             "sender": this.state.sender
                         };
+                        alert('Kurz nach record');
                         axios.post('http://jonbrink.bplaced.net/test.php', record)
                             .then(() => {
                                 alert('Ready');
