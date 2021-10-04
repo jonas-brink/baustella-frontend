@@ -12,6 +12,7 @@ class Music extends Component {
             titel: "",
             sender: ""
         };
+        this.record = {};
 
         this.sendMusic = this.sendMusic.bind(this);
     }
@@ -24,13 +25,13 @@ class Music extends Component {
                     this.setState({
                         sender: response.data.ip
                     }, () => {
-                        var record = {
+                        this.record = {
                             "interpret": this.state.interpret,
                             "titel": this.state.titel,
                             "sender": this.state.sender
                         };
                         alert('Kurz nach record');
-                        axios.post('http://jonbrink.bplaced.net/test.php', record)
+                        axios.post('http://jonbrink.bplaced.net/test.php', this.record)
                             .then(() => {
                                 alert('Ready');
                             });
