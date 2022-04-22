@@ -29,7 +29,7 @@ class Burger extends Component {
                 onStateChange={(state) => this.handleStateChange(state)}
             >
                 <Link className="menu-item" to="/" onClick={this.closeMenu}>QR-Code</Link>
-                <Link className="menu-item" to="/music" onClick={this.closeMenu}>Musikwünsche</Link>
+                <Link className="menu-item" to="/food" onClick={this.closeMenu}>Grillen</Link>
             </Menu>
         );
     }

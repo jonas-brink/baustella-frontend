@@ -66,3 +66,7 @@ body {
 	inset: 25px !important;
 	padding: 10px !important;
 }
+
+input[type=checkbox] {
+    transform: scale(2);
+}

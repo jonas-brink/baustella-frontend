@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 //import axios from 'axios';
 import PageHeader from './PageHeader.js';
-import Music from './Music';
+import Food from './Food';
 import QRGenerator from './QRGenerator';
 import {
 	BrowserRouter as Router,
@@ -19,8 +19,8 @@ class App extends Component {
 				<div className="App">
 					<PageHeader />
 					<Switch>
-						<Route path="/music">
-							<Music />
+						<Route path="/food">
+							<Food />
 						</Route>
 						<Route path="/">
 							<QRGenerator />
