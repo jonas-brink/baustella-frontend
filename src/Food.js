@@ -1,81 +1,92 @@
 import React, { Component } from 'react';
-//import axios from 'axios';
-import myOrders from './orders.json';
-import Select from 'react-select';
+import Slider from '@mui/material/Slider';
+
+
+const sausageMarks = [
+    { value: 0, label: '0' },
+    { value: 0.5, label: '0,5' },
+    { value: 1, label: '1' },
+    { value: 1.5, label: '1,5' },
+    { value: 2, label: '2' },
+    { value: 2.5, label: '2' },
+    { value: 3, label: '3' },
+    { value: 3.5, label: '3,5' }
+];
 
 class Food extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selOrder: 0
+            dateExists: false
         };
-        this.record = {};
-        this.activeOrders = {};
 
-        //this.sendMusic = this.sendMusic.bind(this);
-        this.loadActiveOrders = this.loadActiveOrders.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.createDate = this.createDate.bind(this);
+    }
+
+    getTodayJSON() {
+        var date = new Date();
+        var dateString;
+
+        dateString = date.getFullYear() + '-'
+            + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
+            + ('0' + date.getDate()).slice(-2);
+
+        var dateJSON = {
+            "date": dateString
+        }
+
+        return dateJSON;
     }
 
     componentDidMount() {
-        this.loadActiveOrders();
-    }
-
-    /*sendMusic() {
-        if (this.state.interpret !== "" && this.state.titel !== "") {
-            axios.get('https://api.ipify.org?format=json')
-                .then(response => {
-                    alert(response.data.ip);
+        var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+        xmlhttp.open('POST', 'https://barbecueapp.000webhostapp.com/countDate.php');
+        xmlhttp.onreadystatechange = () => {
+            if (xmlhttp.readyState === 4) {
+                if (JSON.parse(xmlhttp.response).cnt > 0) {
                     this.setState({
-                        sender: response.data.ip
-                    }, () => {
-                        this.record = {
-                            "interpret": this.state.interpret,
-                            "titel": this.state.titel,
-                            "sender": this.state.sender
-                        };
-                        alert('Kurz nach record');
-                        axios.post('http://jonbrink.bplaced.net/test.php', this.record)
-                            .then(() => {
-                                alert('Ready');
-                            });
+                        dateExists: true
                     });
-                });
-        } else {
-            alert("WRONG");
-        }
-    }*/
+                } else {
+                    this.setState({
+                        dateExists: false
+                    });
+                }
 
-    loadActiveOrders() {
-        this.setState({
-            activeOrders: myOrders.orders
-        }, () => {
-            console.log(this.state.activeOrders);
-        });
+            }
+        }
+        xmlhttp.send(JSON.stringify(this.getTodayJSON()));
     }
 
-    handleChange(e) {
-        this.setState({
-            selOrder: e.value
-        });
+    createDate() {
+        if (!this.state.dateExists) {
+            var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+            xmlhttp.open('POST', 'https://barbecueapp.000webhostapp.com/createDate.php');
+            xmlhttp.onreadystatechange = () => {
+                if (xmlhttp.readyState === 4) {
+                    this.setState({
+                        dateExists: true
+                    });
+                }
+            }
+            xmlhttp.send(JSON.stringify(this.getTodayJSON()));
+        }
     }
 
     render() {
         return (
             <div>
-                {
-                    this.state.activeOrders ?
-                        <div>
-                            <Select 
-                                options={this.state.activeOrders}
-                                isSearchable={false}
-                                placeholder={"Datum wählen ..."}
-                            />
-                            <p style={{color: "white"}}>Baguette<input type="checkbox" id="topping" name="topping" value="Baguette" style={{marginLeft: "50px", marginTop: "20px"}}/></p>
-                        </div>
-                        :
-                        null
-                }
+                <Slider
+                    aria-label="Restricted values"
+                    defaultValue={2}
+                    valueLabelDisplay="auto"
+                    min={0}
+                    max={3.5}
+                    step={null}
+                    marks={sausageMarks}
+                />
+                <p style={{ color: "white" }}>Baguette<input type="checkbox" id="topping" name="topping" value="Baguette" style={{ marginLeft: "50px", marginTop: "20px" }} /></p>
+                <button id="addBarbecue" type="button" className={this.state.dateExists ? "btn btn-success" : "btn btn-primary"} onClick={this.createDate}>{this.state.dateExists ? "Heute wird gegrillt!" : "Heute grillen?"}</button>
             </div>
         );
     }
