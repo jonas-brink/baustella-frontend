@@ -29,11 +29,11 @@ class Burger extends Component {
                 onStateChange={(state) => this.handleStateChange(state)}
             >
                 <Link className="menu-item" to="/" onClick={this.closeMenu}>QR-Code</Link>
-                <Link className="menu-item" to="/food" onClick={this.closeMenu}>Grillen</Link>
+                <Link className="menu-item" to="/food" onClick={this.closeMenu}>Bestellen</Link>
+                <Link className="menu-item" to="/shoppinglist" onClick={this.closeMenu}>Einkaufsliste</Link>
             </Menu>
         );
     }
 }
 
 export default Burger;
-

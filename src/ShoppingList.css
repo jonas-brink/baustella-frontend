@@ -1,0 +1,7 @@
+.MuiTableCell-root {
+    color: white !important;
+}
+
+.MuiTableCell-root.MuiTableCell-body{
+    color: lightgray !important;
+}

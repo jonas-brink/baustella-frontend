@@ -9,6 +9,8 @@ import {
 	Switch,
 	Route
 } from 'react-router-dom';
+import ShoppingList from './ShoppingList';
+import RegisterPrices from './RegisterPrices';
 
 
 
@@ -19,6 +21,12 @@ class App extends Component {
 				<div className="App">
 					<PageHeader />
 					<Switch>
+						<Route path="/registerPrices">
+							<RegisterPrices />
+						</Route>
+						<Route path="/shoppinglist">
+							<ShoppingList />
+						</Route>
 						<Route path="/food">
 							<Food />
 						</Route>
