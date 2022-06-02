@@ -3,8 +3,9 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 //import Select from 'react-select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhoneAlt, faUser, faBirthdayCake, faRoad, faCity } from '@fortawesome/free-solid-svg-icons';
+import { faPhoneAlt, faUser, faBirthdayCake, faRoad, faCity  } from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
+
 //React-to-PDF: MIT-license
 import ReactToPdf from "react-to-pdf";
 //QRCode: MIT-license

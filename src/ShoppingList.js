@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import './ShoppingList.css';
 import Form from 'react-bootstrap/Form';
+import {ReactComponent as FaSausage} from './assets/sIc.svg';
 
 
 
@@ -163,14 +164,14 @@ class ShoppingList extends Component {
                                 </Form.Control>
                             </Form.Group>
                             <TableContainer component={Paper} style={{backgroundColor: "black", color: "white"}}>
-                                <Table sx={{ minWidth: 450 }} aria-label="simple table">
+                                <Table sx={{ minWidth: 0 }} aria-label="simple table">
                                     <TableHead>
                                     <TableRow>
-                                        <TableCell>Name</TableCell>
-                                        <TableCell align="right">Bratwürste</TableCell>
-                                        <TableCell align="right">Fleisch</TableCell>
-                                        <TableCell align="right">Baguettes</TableCell>
-                                        <TableCell align="right">Preis&nbsp;(€)</TableCell>
+                                        <TableCell style={{ width: 100 }}>Name</TableCell>
+                                        <TableCell style={{ width: 100, padding: "3px" }} align="right"><div style={{overflow: "hidden", maxWidth: "70px"}}><FaSausage /></div></TableCell>
+                                        <TableCell style={{ width: 100, padding: "3px" }} align="right"><div style={{overflow: "hidden", maxWidth: "70px"}}><FaSausage /></div></TableCell>
+                                        <TableCell style={{ width: 100, padding: "3px" }} align="right"><div style={{overflow: "hidden", maxWidth: "70px"}}><FaSausage /></div></TableCell>
+                                        <TableCell style={{ width: 100, padding: "3px" }} align="right"><div style={{overflow: "hidden", maxWidth: "70px"}}><FaSausage /></div></TableCell>
                                     </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -179,28 +180,28 @@ class ShoppingList extends Component {
                                         key={row.name}
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                         >
-                                        <TableCell component="th" scope="row">
+                                        <TableCell style={{ width: 100 }} component="th" scope="row">
                                             {row.name}
                                         </TableCell>
-                                        <TableCell align="right">{row.cntSausages}</TableCell>
-                                        <TableCell align="right">{row.cntMeat}</TableCell>
-                                        <TableCell align="right">{row.cntBaguettes}</TableCell>
-                                        <TableCell align="right" >{row.price}€</TableCell>
+                                        <TableCell style={{ width: 100 }} align="right">{row.cntSausages}</TableCell>
+                                        <TableCell style={{ width: 100 }} align="right">{row.cntMeat}</TableCell>
+                                        <TableCell style={{ width: 100 }} align="right">{row.cntBaguettes}</TableCell>
+                                        <TableCell style={{ width: 100 }} align="right" >{row.price}€</TableCell>
                                         </TableRow>
                                     ))}
                                     <TableRow>
-                                        <TableCell></TableCell>
-                                        <TableCell></TableCell>
-                                        <TableCell></TableCell>
-                                        <TableCell></TableCell>
-                                        <TableCell></TableCell>
+                                        <TableCell style={{ width: 100 }}></TableCell>
+                                        <TableCell style={{ width: 100 }}></TableCell>
+                                        <TableCell style={{ width: 100 }}></TableCell>
+                                        <TableCell style={{ width: 100 }}></TableCell>
+                                        <TableCell style={{ width: 100 }}></TableCell>
                                     </TableRow>
                                     <TableRow align="right">
-                                        <TableCell>SUMME:</TableCell>
-                                        <TableCell align="right">{this.state.sumSausages}</TableCell>
-                                        <TableCell align="right">{this.state.sumMeat}</TableCell>
-                                        <TableCell align="right">{this.state.sumBaguettes}</TableCell>
-                                        <TableCell align="right">{this.roundDecimal(this.state.priceSausage + this.state.priceMeat + this.state.priceBaguettes)}€</TableCell>
+                                        <TableCell style={{ width: 100 }}>SUMME:</TableCell>
+                                        <TableCell style={{ width: 100 }} align="right">{this.state.sumSausages}</TableCell>
+                                        <TableCell style={{ width: 100 }} align="right">{this.state.sumMeat}</TableCell>
+                                        <TableCell style={{ width: 100 }} align="right">{this.state.sumBaguettes}</TableCell>
+                                        <TableCell style={{ width: 100 }} align="right">{this.roundDecimal(this.state.priceSausage + this.state.priceMeat + this.state.priceBaguettes)}€</TableCell>
                                     </TableRow>
                                     </TableBody>
                                 </Table>

@@ -40,18 +40,6 @@ const defSausages = 2;
 const defMeat = 1;
 const defBaguettes = 1;
 
-const customModalStyle = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginLeft: "50px",
-      marginRight: "auto",
-      transform: 'translate(-50%, -50%)',
-    },
-  };
-
 
 //TODO: fix all sites for mobile
 //TODO: fix table for mobile
@@ -189,7 +177,7 @@ class Food extends Component {
                                 </div>
                             </div>
                             
-                            <InputGroup style={{ float: "right", marginRight: "10%", marginBottom: "31px", width: "80%" }}>
+                            <InputGroup style={{ float: "right", marginRight: "10%", marginBottom: "20px", width: "80%" }}>
                                 <FormControl
                                     placeholder="Namen eintragen..."
                                     aria-label="Namen eintragen..."
@@ -235,18 +223,28 @@ class Food extends Component {
                                 value={this.state.cntBaguettes}
                                 onChange={(event, value) => this.handleChange(2, value)}
                             />
-                            <button id="order" type="button" className="btn btn-primary" style={{ width: "80%" }} onClick={this.orderFood}>Abschicken</button>
+                            <button id="order" type="button" className="btn btn-primary" style={{ width: "80%", marginTop: "20px" }} onClick={this.orderFood}>Abschicken</button>
         
                             <Modal 
                                 isOpen={this.state.showModal}
-                                style={customModalStyle}
+                                style={{
+                                    content: {
+                                      top: '50%',
+                                      left: '50%',
+                                      right: 'auto',
+                                      bottom: 'auto',
+                                      marginLeft: "50px",
+                                      marginRight: "auto",
+                                      transform: 'translate(-50%, -50%)',
+                                    },
+                                  }}
                                 className={"Modal"}
                                 overlayClassName={"Overlay"}
                                 onRequestClose={this.closeModal}
                                 ariaHideApp={false}
                             >
-                                <div style={{ textAlign: 'center', height: "80%" }}>
-                                    <h3>Bestellung erfolgreich aufgegeben !</h3>
+                                <div style={{ textAlign: 'center', marginBottom: "15px" }}>
+                                    <h4 style={{color: "green"}}>Bestellung erfolgreich aufgegeben !</h4>
                                     Du kannst dieses Fenster jetzt schließen.
                                 </div>
                                 <button type="button" className="btn btn-primary closeBtn" stlye={{float: "right"}} onClick={this.closeModal}>Schließen</button>

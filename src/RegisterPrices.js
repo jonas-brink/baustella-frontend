@@ -179,7 +179,7 @@ class RegisterPrices extends Component {
                                     onChange={(e) => this.setState({
                                         priceSausage: e.target.value
                                     })}
-                                    style={{backgroundColor: 'white', marginLeft: "30px", marginRight: "30px"}}
+                                    style={{backgroundColor: 'white', marginLeft: "25px", marginRight: "25px"}}
                                 />
                             </div>
                             <div style={{width: "33%", float: "left"}}>
@@ -194,7 +194,7 @@ class RegisterPrices extends Component {
                                     onChange={(e) => this.setState({
                                         priceMeat: e.target.value
                                     })}
-                                    style={{backgroundColor: 'white', marginLeft: "30px", marginRight: "30px"}}
+                                    style={{backgroundColor: 'white', marginLeft: "25px", marginRight: "25px"}}
                                 />
                             </div>
                             <div style={{width: "33%", float: "left"}}>
@@ -209,7 +209,7 @@ class RegisterPrices extends Component {
                                     onChange={(e) => this.setState({
                                         priceBaguettes: e.target.value
                                     })}
-                                    style={{backgroundColor: 'white', marginLeft: "30px", marginRight: "30px"}}
+                                    style={{backgroundColor: 'white', marginLeft: "25px", marginRight: "25px"}}
                                 />
                             </div>
                             <button id="order" type="button" className="btn btn-primary" style={{ width: "80%", marginTop: "50px" }} onClick={this.savePrices}>Speichern</button>
@@ -224,7 +224,7 @@ class RegisterPrices extends Component {
                 }
                 <hr style={{color: "white", backgroundColor: "white"}}></hr>
                 <div style={{ width: "100%", overflow: "hidden", float: "left" }}>
-                    <button id="addBarbecue" type="button" style={{ marginTop: "20px", marginBottom: "33px", width: "40%", height: "38px" }} className={this.state.dateExists ? "btn btn-success" : "btn btn-primary"} onClick={this.createDate}>{this.state.dateExists ? "Heute wird gegrillt" : "'Heute' hinzufügen"}</button>
+                    <button id="addBarbecue" type="button" style={{ marginTop: "20px", marginBottom: "33px", width: "40%", height: "65px" }} className={this.state.dateExists ? "btn btn-success" : "btn btn-primary"} onClick={this.createDate}>{this.state.dateExists ? "Heute wird gegrillt" : "'Heute' hinzufügen"}</button>
                 </div>
             </div>
         );
