@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 
 
-class RegisterPrices extends Component {
+class Admin extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -212,7 +212,7 @@ class RegisterPrices extends Component {
                                     style={{backgroundColor: 'white', marginLeft: "25px", marginRight: "25px"}}
                                 />
                             </div>
-                            <button id="order" type="button" className="btn btn-primary" style={{ width: "80%", marginTop: "50px" }} onClick={this.savePrices}>Speichern</button>
+                            <button type="button" className="btn btn-primary" style={{ width: "80%", marginTop: "50px" }} onClick={this.savePrices}>Speichern</button>
                             <hr style={{color: "white", backgroundColor: "white"}}></hr>
                             <label style={{color: "white", marginRight: "30px"}}>Tag löschen:</label>
                             <Button id="delDay" variant="danger" onClick={this.deleteDay}>Löschen</Button>
@@ -231,4 +231,4 @@ class RegisterPrices extends Component {
     }
 }
 
-export default RegisterPrices;
+export default Admin;

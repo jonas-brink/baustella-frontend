@@ -10,7 +10,7 @@ import {
 	Route
 } from 'react-router-dom';
 import ShoppingList from './ShoppingList';
-import RegisterPrices from './RegisterPrices';
+import Admin from './Admin';
 
 
 
@@ -21,8 +21,8 @@ class App extends Component {
 				<div className="App">
 					<PageHeader />
 					<Switch>
-						<Route path="/registerPrices">
-							<RegisterPrices />
+						<Route path="/admin">
+							<Admin />
 						</Route>
 						<Route path="/shoppinglist">
 							<ShoppingList />

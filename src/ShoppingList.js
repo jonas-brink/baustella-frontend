@@ -9,6 +9,9 @@ import Paper from '@mui/material/Paper';
 import './ShoppingList.css';
 import Form from 'react-bootstrap/Form';
 import {ReactComponent as FaSausage} from './assets/sIc.svg';
+import {ReactComponent as FaSteak} from './assets/stIc.svg';
+import {ReactComponent as FaBaguette} from './assets/bIc.svg';
+import {ReactComponent as FaEuro} from './assets/eIc.svg';
 
 
 
@@ -168,10 +171,10 @@ class ShoppingList extends Component {
                                     <TableHead>
                                     <TableRow>
                                         <TableCell style={{ width: 100 }}>Name</TableCell>
-                                        <TableCell style={{ width: 100, padding: "3px" }} align="right"><div style={{overflow: "hidden", maxWidth: "70px"}}><FaSausage /></div></TableCell>
-                                        <TableCell style={{ width: 100, padding: "3px" }} align="right"><div style={{overflow: "hidden", maxWidth: "70px"}}><FaSausage /></div></TableCell>
-                                        <TableCell style={{ width: 100, padding: "3px" }} align="right"><div style={{overflow: "hidden", maxWidth: "70px"}}><FaSausage /></div></TableCell>
-                                        <TableCell style={{ width: 100, padding: "3px" }} align="right"><div style={{overflow: "hidden", maxWidth: "70px"}}><FaSausage /></div></TableCell>
+                                        <TableCell style={{ width: 100, padding: "6px" }} align="center"><div style={{overflow: "hidden", maxWidth: "50px", marginLeft: "auto", marginRight: "auto"}}><FaSausage /></div></TableCell>
+                                        <TableCell style={{ width: 100, padding: "6px" }} align="center"><div style={{overflow: "hidden", maxWidth: "50px", marginLeft: "auto", marginRight: "auto"}}><FaSteak /></div></TableCell>
+                                        <TableCell style={{ width: 100, padding: "6px" }} align="center"><div style={{overflow: "hidden", maxWidth: "50px", marginLeft: "auto", marginRight: "auto"}}><FaBaguette /></div></TableCell>
+                                        <TableCell style={{ width: 100, padding: "6px", borderLeft: "1px solid white"}} align="center"><div style={{overflow: "hidden", maxWidth: "50px", marginLeft: "auto", marginRight: "auto"}}><FaEuro /></div></TableCell>
                                     </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -183,10 +186,10 @@ class ShoppingList extends Component {
                                         <TableCell style={{ width: 100 }} component="th" scope="row">
                                             {row.name}
                                         </TableCell>
-                                        <TableCell style={{ width: 100 }} align="right">{row.cntSausages}</TableCell>
-                                        <TableCell style={{ width: 100 }} align="right">{row.cntMeat}</TableCell>
-                                        <TableCell style={{ width: 100 }} align="right">{row.cntBaguettes}</TableCell>
-                                        <TableCell style={{ width: 100 }} align="right" >{row.price}€</TableCell>
+                                        <TableCell style={{ width: 100 }} align="center">{row.cntSausages}</TableCell>
+                                        <TableCell style={{ width: 100 }} align="center">{row.cntMeat}</TableCell>
+                                        <TableCell style={{ width: 100 }} align="center">{row.cntBaguettes}</TableCell>
+                                        <TableCell style={{ width: 100, borderLeft: "1px solid white" }} align="center" >{row.price}€</TableCell>
                                         </TableRow>
                                     ))}
                                     <TableRow>
@@ -194,14 +197,14 @@ class ShoppingList extends Component {
                                         <TableCell style={{ width: 100 }}></TableCell>
                                         <TableCell style={{ width: 100 }}></TableCell>
                                         <TableCell style={{ width: 100 }}></TableCell>
-                                        <TableCell style={{ width: 100 }}></TableCell>
+                                        <TableCell style={{ width: 100, borderLeft: "1px solid white" }}></TableCell>
                                     </TableRow>
                                     <TableRow align="right">
                                         <TableCell style={{ width: 100 }}>SUMME:</TableCell>
-                                        <TableCell style={{ width: 100 }} align="right">{this.state.sumSausages}</TableCell>
-                                        <TableCell style={{ width: 100 }} align="right">{this.state.sumMeat}</TableCell>
-                                        <TableCell style={{ width: 100 }} align="right">{this.state.sumBaguettes}</TableCell>
-                                        <TableCell style={{ width: 100 }} align="right">{this.roundDecimal(this.state.priceSausage + this.state.priceMeat + this.state.priceBaguettes)}€</TableCell>
+                                        <TableCell style={{ width: 100 }} align="center">{this.state.sumSausages}</TableCell>
+                                        <TableCell style={{ width: 100 }} align="center">{this.state.sumMeat}</TableCell>
+                                        <TableCell style={{ width: 100 }} align="center">{this.state.sumBaguettes}</TableCell>
+                                        <TableCell style={{ width: 100, borderLeft: "1px solid white" }} align="center">{this.roundDecimal(this.state.priceSausage + this.state.priceMeat + this.state.priceBaguettes)}€</TableCell>
                                     </TableRow>
                                     </TableBody>
                                 </Table>
@@ -212,7 +215,7 @@ class ShoppingList extends Component {
                             <h3>Es stehen keine Tage zur Auswahl.</h3>
                         </div>
                 }
-                <a href='/registerPrices' style={{float: 'right'}}>Preise und Tage bearbeiten</a>
+                { /*<a href='/admin' style={{float: 'right'}}>Preise und Tage bearbeiten</a>*/ }
             </div>
         );
     }

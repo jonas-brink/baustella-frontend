@@ -110,7 +110,7 @@ class Food extends Component {
             }
             xmlhttp.send(JSON.stringify(order));
         } else {
-            console.log("No name specified");
+            alert('Bitte einen Namen eingeben.');
         }
     }
 
@@ -223,7 +223,7 @@ class Food extends Component {
                                 value={this.state.cntBaguettes}
                                 onChange={(event, value) => this.handleChange(2, value)}
                             />
-                            <button id="order" type="button" className="btn btn-primary" style={{ width: "80%", marginTop: "20px" }} onClick={this.orderFood}>Abschicken</button>
+                            <button id="order" type="button" className="btn btn-primary" style={{ width: "80%", marginTop: "15px", height: "45px" }} onClick={this.orderFood}>Abschicken</button>
         
                             <Modal 
                                 isOpen={this.state.showModal}
