@@ -243,9 +243,8 @@ class Food extends Component {
                                 onRequestClose={this.closeModal}
                                 ariaHideApp={false}
                             >
-                                <div style={{ textAlign: 'center', marginBottom: "15px" }}>
+                                <div style={{ textAlign: 'center', marginBottom: "30px" }}>
                                     <h4 style={{color: "green"}}>Bestellung erfolgreich aufgegeben !</h4>
-                                    Du kannst dieses Fenster jetzt schließen.
                                 </div>
                                 <button type="button" className="btn btn-primary closeBtn" stlye={{float: "right"}} onClick={this.closeModal}>Schließen</button>
                             </Modal>
