@@ -30,7 +30,8 @@ class ShoppingList extends Component {
 
             priceSausage: 0,
             priceMeat: 0,
-            priceBaguettes: 0
+            priceBaguettes: 0,
+            priceAllg: 0
         };
 
         this.handleSelect = this.handleSelect.bind(this);
@@ -59,10 +60,12 @@ class ShoppingList extends Component {
         let pS = this.state.dates.length > 0 ? parseFloat(this.state.dates[this.state.dropDownIndex].priceSausage) : 0.0;
         let pM = this.state.dates.length > 0 ? parseFloat(this.state.dates[this.state.dropDownIndex].priceMeat) : 0.0;
         let pB = this.state.dates.length > 0 ? parseFloat(this.state.dates[this.state.dropDownIndex].priceBaguettes) : 0.0;
+        let pA = this.state.dates.length > 0 ? parseFloat(this.state.dates[this.state.dropDownIndex].priceAllg) : 0;
         this.setState({
             priceSausage: pS,
             priceMeat: pM,
-            priceBaguettes: pB
+            priceBaguettes: pB,
+            priceAllg: pA
         }, () => {
             //load orders
             if (this.state.dates.length > 0) {
@@ -95,7 +98,7 @@ class ShoppingList extends Component {
                             this.setState({
                                 sumSausages: sumS,
                                 sumMeat: sumM,
-                                sumBaguettes: sumB
+                                sumBaguettes: sumB,
                             }, () => {
                 
                                 var newOrders = [...this.state.orders];
@@ -104,11 +107,13 @@ class ShoppingList extends Component {
                                     let partPriceS = this.state.sumSausages > 0 ? (order.cntSausages / this.state.sumSausages) * this.state.priceSausage : 0;
                                     let partPriceM = this.state.sumMeat > 0 ? (order.cntMeat / this.state.sumMeat) * this.state.priceMeat : 0;
                                     let partPriceB = this.state.sumBaguettes > 0 ? (order.cntBaguettes / this.state.sumBaguettes) * this.state.priceBaguettes : 0;
-                                    order.price = this.roundDecimal(partPriceS + partPriceM + partPriceB);
+                                    let partPriceA = parseInt(this.state.orders.length) > 0 ? (1 / parseInt(this.state.orders.length)) * this.state.priceAllg : 0;
+                                    order.price = this.roundDecimal(partPriceS + partPriceM + partPriceB + partPriceA);
                                     newOrders[j] = order;
                                 }
                                 this.setState({orders: newOrders}, () => {
-                                    console.log(this.state.orders);
+                                    console.log("orders.length");
+                                    console.log(this.state.orders.length);
                                 });
                             });
                         });
@@ -204,7 +209,7 @@ class ShoppingList extends Component {
                                         <TableCell style={{ width: 100 }} align="center">{this.state.sumSausages}</TableCell>
                                         <TableCell style={{ width: 100 }} align="center">{this.state.sumMeat}</TableCell>
                                         <TableCell style={{ width: 100 }} align="center">{this.state.sumBaguettes}</TableCell>
-                                        <TableCell style={{ width: 100, borderLeft: "1px solid white" }} align="center">{this.roundDecimal(this.state.priceSausage + this.state.priceMeat + this.state.priceBaguettes)}€</TableCell>
+                                        <TableCell style={{ width: 100, borderLeft: "1px solid white" }} align="center">{this.roundDecimal(this.state.priceSausage + this.state.priceMeat + this.state.priceBaguettes + this.state.priceAllg)}€</TableCell>
                                     </TableRow>
                                     </TableBody>
                                 </Table>

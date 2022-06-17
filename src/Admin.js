@@ -13,6 +13,7 @@ class Admin extends Component {
             priceSausage: 0,
             priceMeat: 0,
             priceBaguettes: 0,
+            priceAllg: 0,
             dateExists: false
         };
 
@@ -67,10 +68,12 @@ class Admin extends Component {
         let pS = this.state.dates.length > 0 ? parseFloat(this.state.dates[this.state.dropDownIndex].priceSausage) : 0.0;
         let pM = this.state.dates.length > 0 ? parseFloat(this.state.dates[this.state.dropDownIndex].priceMeat) : 0.0;
         let pB = this.state.dates.length > 0 ? parseFloat(this.state.dates[this.state.dropDownIndex].priceBaguettes) : 0.0;
+        let pA = this.state.dates.length > 0 ? parseFloat(this.state.dates[this.state.dropDownIndex].priceAllg) : 0.0;
         this.setState({
             priceSausage: pS,
             priceMeat: pM,
-            priceBaguettes: pB
+            priceBaguettes: pB,
+            priceAllg: pA
         });
     }
 
@@ -90,7 +93,8 @@ class Admin extends Component {
             identifier: id,
             priceSausage: this.state.priceSausage,
             priceMeat: this.state.priceMeat,
-            priceBaguettes: this.state.priceBaguettes
+            priceBaguettes: this.state.priceBaguettes,
+            priceAllg: this.state.priceAllg
         }
         console.log('save:');
         console.log(reqData);
@@ -208,6 +212,22 @@ class Admin extends Component {
                                     }}
                                     onChange={(e) => this.setState({
                                         priceBaguettes: e.target.value
+                                    })}
+                                    style={{backgroundColor: 'white', marginLeft: "25px", marginRight: "25px"}}
+                                />
+                            </div>
+                            <label htmlFor="priceAllg" style={{color: "white", width: "33%", float: "left"}}>Preis für allgemeine Dinge:</label>
+                            <div style={{width: "33%", float: "left", clear: "left"}}>
+                                <TextField
+                                    type="number"
+                                    value={this.state.priceAllg}
+                                    variant="outlined"
+                                    inputProps={{
+                                        maxLength: 13,
+                                        step: "0.01"
+                                    }}
+                                    onChange={(e) => this.setState({
+                                        priceAllg: e.target.value
                                     })}
                                     style={{backgroundColor: 'white', marginLeft: "25px", marginRight: "25px"}}
                                 />
