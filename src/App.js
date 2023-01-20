@@ -11,6 +11,7 @@ import {
 } from 'react-router-dom';
 import ShoppingList from './ShoppingList';
 import Admin from './Admin';
+import MusicRequest from './MusicRequest';
 
 
 
@@ -21,6 +22,9 @@ class App extends Component {
 				<div className="App">
 					<PageHeader />
 					<Switch>
+						<Route path="/musicrequest">
+							<MusicRequest />
+						</Route>
 						<Route path="/admin">
 							<Admin />
 						</Route>
